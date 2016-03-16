@@ -5,7 +5,7 @@ use Censam\LaraAjax\Ajaxis;
 use Censam\LaraScaffold\AutoArray;
 use Censam\LaraScaffold\Generators\HomePageGenerator\HomePageGenerator;
 use Censam\LaraScaffold\Scaffold;
-use Censam\LaraScaffold\Scaffoldinterface;
+use Censam\LaraScaffold\LaraScaffold;
 use AppController;
 use Illuminate\Support\Facades\Artisan;
 use Request;
@@ -29,9 +29,9 @@ class GuiController extends AppController
      */
     public function index()
     {
-        $scaffold = Scaffoldinterface::paginate(6);
+        $scaffold = LaraScaffold::paginate(6);
 
-        $scaffoldList = Scaffoldinterface::all()->lists('id', 'tablename');
+        $scaffoldList = LaraScaffold::all()->lists('id', 'tablename');
 
         return view('lara-scaffold::scaffoldApp', compact('scaffold', 'scaffoldList'));
     }
@@ -50,7 +50,7 @@ class GuiController extends AppController
 
         $scaffold->Migration()->Model()->Views()->Controller()->Route();
 
-        $scaffoldInterface = new Scaffoldinterface();
+        $scaffoldInterface = new LaraScaffold();
 
         $scaffoldInterface->migration = $scaffold->paths->MigrationPath();
         $scaffoldInterface->model = $scaffold->paths->ModelPath();
@@ -73,7 +73,7 @@ class GuiController extends AppController
      */
     public function destroy($id)
     {
-        $scaffoldInterface = Scaffoldinterface::FindOrFail($id);
+        $scaffoldInterface = LaraScaffold::FindOrFail($id);
 
         unlink($scaffoldInterface->model);
         unlink($scaffoldInterface->controller);
@@ -100,7 +100,7 @@ class GuiController extends AppController
      */
     public function deleteMsg($id)
     {
-        $scaffold = Scaffoldinterface::FindOrFail($id);
+        $scaffold = LaraScaffold::FindOrFail($id);
 
         $msg = Ajaxis::Mtdeleting("Warning!!", "Would you like to rollback '" . $scaffold->tablename . "' ?? by rollbacking this, make sure that you have rollbacked " . $scaffold->tablename . " from database. and avoid to keep routes recoureces.", '/scaffold/guirollback/' . $id);
 
@@ -134,7 +134,7 @@ class GuiController extends AppController
      */
     public function homePage()
     {
-        $scaffoldList = Scaffoldinterface::all();
+        $scaffoldList = LaraScaffold::all();
 
         $home = new HomePageGenerator($scaffoldList);
 

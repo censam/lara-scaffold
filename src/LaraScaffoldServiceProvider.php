@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 
 /**
- * Class LaraScaffold
+ * Class LaraScaffoldServiceProvider
  *
  * @package lara-scaffold
  * @author Sampath Gunasekara <wgsampath@gmail.com>
