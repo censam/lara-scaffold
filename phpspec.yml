@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Censam\LaraScaffold
+        psr4_prefix: Censam\LaraScaffold
+        src_path: src

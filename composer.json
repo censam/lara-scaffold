@@ -1,0 +1,25 @@
+{
+    "name": "censam/lara-scaffold",
+    "description": "A scaffold  For Laravel",
+    "homepage": "http://github.com/censam/lara-scaffold",
+    "keywords": [],
+    "license": "MIT",
+    "authors": [{
+        "name": "Sampath Gunasekara",
+        "email": "wgsampath@gmail.com"
+    }],
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/support": "~5.1",
+        "censam/lara-ajax": "^1.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Censam\\LaraScaffold\\": "src/"
+        },
+        "files": ["helpers.php"]
+    }
+}
