@@ -4,6 +4,7 @@ namespace Censam\LaraScaffold;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
+
 /**
  * Class LaraScaffold
  *
@@ -12,6 +13,7 @@ use Illuminate\Support\ServiceProvider;
  */
 class LaraScaffoldServiceProvider extends ServiceProvider
 {
+
 
     /**
      * Indicates if loading of the provider is deferred.
