@@ -79,10 +79,10 @@ class NamesGenerate
      */
     public function PanelType()
     {
-        if(!$this->data['Panel']=='public'){
-        return false;
-        }else{
+        if($this->data['Panel']!='public'){
         return $this->data['Panel'];            
+        }else{
+        return false;
         }
     }
 
@@ -142,7 +142,8 @@ class NamesGenerate
      * @return String
      */
     public function standardapi()
-    {
+    {   
+        
         if($this->PanelType()){
             $urlTo = URL::to($this->PanelType().'/'.$this->TableNameSingle());
         }else{
@@ -162,9 +163,9 @@ class NamesGenerate
     public function relationalUrl()
     {
         if($this->PanelType()){
-            $urlTo = $this->PanelType().'/'.$this->TableNameSingle();
+            $urlTo = '/'.$this->PanelType().'/'.$this->TableNameSingle();
         }else{
-            $urlTo = $this->TableNameSingle();
+            $urlTo = '/'.$this->TableNameSingle();
        }
         return $urlTo;
        
