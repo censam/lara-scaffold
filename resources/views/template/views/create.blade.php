@@ -11,11 +11,11 @@
     <body>
         <div class = 'container'>
             <h1>Create {{$names->TableName()}}</h1>
-            <form method = 'get' action = '{{$names->standardApi()}}'>
+            <form method = 'get' action = '{{$names->relationalUrl()}}'>
                 <button class = 'btn blue'>{{$names->TableName()}} Index</button>
             </form>
             <br>
-            <form method = 'POST' action = '{{$names->standardApi()}}'>
+            <form method = 'POST' action = '{{$names->relationalUrl()}}'>
                 <input type = 'hidden' name = '_token' value = '{{$names->open()}}Session::token(){{$names->close()}}'>
                 @foreach($dataSystem->dataScaffold('v') as $value)
 

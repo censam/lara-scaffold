@@ -12,7 +12,7 @@
         <div class = 'container'>
             <h1>{{$names->TableName()}} Index</h1>
             <div class="row">
-            <form class = 'col s3' method = 'get' action = '{{$names->standardApi()}}/create'>
+            <form class = 'col s3' method = 'get' action = '{{$names->relationalUrl()}}/create'>
                 <button class = 'btn red' type = 'submit'>Create New {{$names->TableName()}}</button>
             </form>
             @if($dataSystem->relationAttr != null)

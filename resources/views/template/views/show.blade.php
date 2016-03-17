@@ -11,7 +11,7 @@
     <body>
         <div class = 'container'>
             <h1>Show {{$names->TableName()}}</h1>
-            <form method = 'get' action = '{{$names->standardApi()}}'>
+            <form method = 'get' action = '{{$names->relationalUrl()}}'>
                 <button class = 'btn blue'>{{$names->TableName()}} Index</button>
             </form>
             <table class = 'highlight bordered'>

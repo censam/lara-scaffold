@@ -14,11 +14,11 @@ var content = "<form id = 'form' method = 'post' action = '" + baseURL + "/scaff
         </div>\
         </tr>\
         <p>\
-      <input name='Panel' type='radio' id='Backend' value='public' />\
+      <input name='Panel' type='radio' id='Backend' value='admin' />\
       <label for='Backend'>Backend</label>\
     </p>\
     <p>\
-      <input name='Panel' type='radio' id='FrondEnd' value='admin' />\
+      <input name='Panel' type='radio' id='FrondEnd' value='public' />\
       <label for='FrondEnd'>FrondEnd</label>\
     </p>\
         </table>\
