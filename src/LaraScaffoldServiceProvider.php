@@ -33,7 +33,7 @@ class LaraScaffoldServiceProvider extends ServiceProvider
 
         // Get namespace
         $nameSpace = $this->app->getNamespace();
-
+        
         // Set namespace alias for AppController
         AliasLoader::getInstance()->alias('AppController', $nameSpace . 'Http\Controllers\Controller');
 

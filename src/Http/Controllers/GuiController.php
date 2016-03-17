@@ -1,7 +1,7 @@
 <?php
 namespace Censam\LaraScaffold\Http\Controllers;
 
-use Censam\LaraAjax\Ajaxis;
+use Censam\LaraAjax\LaraAjax;
 use Censam\LaraScaffold\AutoArray;
 use Censam\LaraScaffold\Generators\HomePageGenerator\HomePageGenerator;
 use Censam\LaraScaffold\Scaffold;
@@ -29,8 +29,8 @@ class GuiController extends AppController
      */
     public function index()
     {
-        $scaffold = LaraScaffold::paginate(6);
 
+        $scaffold = LaraScaffold::paginate(6);
         $scaffoldList = LaraScaffold::all()->lists('id', 'tablename');
 
         return view('lara-scaffold::scaffoldApp', compact('scaffold', 'scaffoldList'));
@@ -92,9 +92,9 @@ class GuiController extends AppController
     }
 
     /**
-     * Delete confirmation message by Ajaxis
+     * Delete confirmation message by LaraAjax
      *
-     * @link https://github.com/censam/ajaxis
+     * @link https://github.com/censam/lara-ajax
      *
      * @return String
      */
@@ -102,7 +102,7 @@ class GuiController extends AppController
     {
         $scaffold = LaraScaffold::FindOrFail($id);
 
-        $msg = Ajaxis::Mtdeleting("Warning!!", "Would you like to rollback '" . $scaffold->tablename . "' ?? by rollbacking this, make sure that you have rollbacked " . $scaffold->tablename . " from database. and avoid to keep routes recoureces.", '/scaffold/guirollback/' . $id);
+        $msg = LaraAjax::Mtdeleting("Warning!!", "Would you like to rollback '" . $scaffold->tablename . "' ?? by rollbacking this, make sure that you have rollbacked " . $scaffold->tablename . " from database. and avoid to keep routes recoureces.", '/scaffold/guirollback/' . $id);
 
         if (Request::ajax()) {
 

@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Request;
 use App\Http\Controllers\Controller;
 use App\{{$names->TableName()}};
-use Censam\LaraAjax\Ajaxis;
+use Censam\LaraAjax\LaraAjax;
 use URL;
 @foreach($dataSystem->foreignKeys as $key)
 
@@ -164,15 +164,15 @@ class {{$names->TableName()}}Controller extends Controller
     }
 
     /**
-     * Delete confirmation message by Ajaxis
+     * Delete confirmation message by LaraAjax
      *
-     * @link https://github.com/censam/ajaxis
+     * @link https://github.com/censam/lara-ajax
      *
      * @return String
      */
     public function DeleteMsg($id)
     {
-        $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/{{$names->relationalUrl()}}/'. $id . '/delete/');
+        $msg = LaraAjax::MtDeleting('Warning!!','Would you like to remove This?','/{{$names->relationalUrl()}}/'. $id . '/delete/');
 
         if(Request::ajax())
         {

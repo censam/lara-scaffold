@@ -12,6 +12,15 @@ var content = "<form id = 'form' method = 'post' action = '" + baseURL + "/scaff
             <input id = 'TableName' name='TableName' required='' aria-required='true' type='text'>\
             <label for='TableName'>TableName</label></td>\
         </div>\
+        </tr>\
+        <p>\
+      <input name='Panel' type='radio' id='Backend' value='public' />\
+      <label for='Backend'>Backend</label>\
+    </p>\
+    <p>\
+      <input name='Panel' type='radio' id='FrondEnd' value='admin' />\
+      <label for='FrondEnd'>FrondEnd</label>\
+    </p>\
         </table>\
         <div class 'row'>\
         <button type = 'submit' class = 'val btn green col s12'>\

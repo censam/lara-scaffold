@@ -81,7 +81,7 @@
         </div>
     </div>
     <div id="modal1" class="modal">
-        <div class = "row AjaxisModal">
+        <div class = "row LaraAjaxModal">
         </div>
     </div>
     <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
@@ -102,7 +102,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
 <script src= "http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
 <script> var baseURL = "{{URL::to('/')}}"</script>
-<script type="text/javascript" src = "{{URL::to('js/AjaxisMaterialize.js')}}"></script>
+<script type="text/javascript" src = "{{URL::to('js/LaraAjaxMaterialize.js')}}"></script>
 <script>
 var token = '{{Session::token()}}';
 var TableData = {!! $scaffoldList !!}
