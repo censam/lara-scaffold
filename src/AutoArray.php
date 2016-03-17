@@ -4,6 +4,8 @@ namespace Censam\LaraScaffold;
 use Censam\LaraScaffold\Attributes;
 use Illuminate\Database\Eloquent\Model;
 
+
+
 /**
  * class AutoArray
  *
