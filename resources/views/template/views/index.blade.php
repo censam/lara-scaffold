@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Index {{$names->TableName()}}</title>
-    </head>
-    <body>
-        <div class = 'container'>
+{{$names->blade()}}extends('Layout')
+
+{{$names->blade()}}section('contents')
+ <div class = 'container'>
             <h1>{{$names->TableName()}} Index</h1>
             <div class="row">
             <form class = 'col s3' method = 'get' action = '{{$names->relationalUrl()}}/create'>
@@ -83,14 +75,9 @@
                 </tbody>
             </table>
         </div>
-        <div id="modal1" class="modal">
-            <div class = "row LaraAjaxModal">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <script> var baseURL = "{{$names->open()}}URL::to('/'){{$names->close()}}"</script>
-    <script type="text/javascript" src = "/js/LaraAjaxMaterialize.js"></script>
-    <script type="text/javascript" src = "/js/lara-scaffold-js/customA.js"></script>
-</html>
+
+{{$names->blade()}}stop
+{{$names->blade()}}section('footer')
+<div class="footer"></div>
+{{$names->blade()}}stop       
+        

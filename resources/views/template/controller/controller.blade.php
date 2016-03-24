@@ -44,9 +44,7 @@ class {{$names->TableName()}}Controller extends Controller
 
         return view('{{$names->TableNameSingle()}}.create'
         @if($dataSystem->foreignKeys != null)
-        ,compact(
-        @foreach($dataSystem->foreignKeys as $key => $value)
-        '{{str_plural($value)}}'
+        ,compact(@foreach($dataSystem->foreignKeys as $key => $value)'{{str_plural($value)}}'
         @if($value != last($dataSystem->foreignKeys)),
         @endif
         @endforeach)

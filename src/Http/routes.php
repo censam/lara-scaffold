@@ -26,4 +26,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('scaffold/migrate', '\Censam\LaraScaffold\Http\Controllers\GuiController@migrate');
 
     Route::get('scaffold/rollback', '\Censam\LaraScaffold\Http\Controllers\GuiController@rollback');
+
+    Route::get('scaffold/layout', '\Censam\LaraScaffold\Http\Controllers\GuiController@layout');
+
+    Route::get('scaffold/fresh-site', '\Censam\LaraScaffold\Http\Controllers\GuiController@freshsite');
 });

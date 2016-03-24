@@ -4,14 +4,20 @@ namespace Censam\LaraScaffold\Http\Controllers;
 use Censam\LaraAjax\LaraAjax;
 use Censam\LaraScaffold\AutoArray;
 use Censam\LaraScaffold\Generators\HomePageGenerator\HomePageGenerator;
+use Illuminate\Database\Schema\Blueprint;
+use Censam\LaraScaffold\Generators\LayoutGenerator\LayoutGenerator;
 use Censam\LaraScaffold\Scaffold;
 use Censam\LaraScaffold\LaraScaffold;
+use Censam\LaraScaffold\Generators\NamesGenerate;
 use AppController;
 use Illuminate\Support\Facades\Artisan;
 use Request;
 use Session;
 use URL;
-
+use File;
+use Directory;
+use DB;
+use Schema;
 /**
  * Class GuiController
  *
@@ -30,10 +36,20 @@ class GuiController extends AppController
     public function index()
     {
 
-        $scaffold = LaraScaffold::paginate(6);
-        $scaffoldList = LaraScaffold::all()->lists('id', 'tablename');
+          try
+        {
+           $scaffold = LaraScaffold::paginate(6);
+           $scaffold = LaraScaffold::paginate(6);
+           $scaffoldList = LaraScaffold::all()->lists('id', 'tablename');
+           return view('lara-scaffold::scaffoldApp', compact('scaffold', 'scaffoldList'));
 
-        return view('lara-scaffold::scaffoldApp', compact('scaffold', 'scaffoldList'));
+        } catch (\Exception $e) {
+
+            return $this->freshsite();
+        }
+
+       
+
     }
 
     /**
@@ -50,15 +66,15 @@ class GuiController extends AppController
 
         $scaffold->Migration()->Model()->Views()->Controller()->Route();
 
-        $scaffoldInterface = new LaraScaffold();
+        $laraScaffold = new LaraScaffold();
 
-        $scaffoldInterface->migration = $scaffold->paths->MigrationPath();
-        $scaffoldInterface->model = $scaffold->paths->ModelPath();
-        $scaffoldInterface->controller = $scaffold->paths->ControllerPath();
-        $scaffoldInterface->views = $scaffold->paths->DirPath();
-        $scaffoldInterface->tablename = $scaffold->names->TableNames();
+        $laraScaffold->migration = $scaffold->paths->MigrationPath();
+        $laraScaffold->model = $scaffold->paths->ModelPath();
+        $laraScaffold->controller = $scaffold->paths->ControllerPath();
+        $laraScaffold->views = $scaffold->paths->DirPath();
+        $laraScaffold->tablename = $scaffold->names->TableNames();
 
-        $scaffoldInterface->save();
+        $laraScaffold->save();
 
         Session::flash('status', ' Successfully created ' . $scaffold->names->TableName() . '. To complete your scaffold. go ahead and migrate the schema.');
 
@@ -73,18 +89,18 @@ class GuiController extends AppController
      */
     public function destroy($id)
     {
-        $scaffoldInterface = LaraScaffold::FindOrFail($id);
+        $laraScaffold = LaraScaffold::FindOrFail($id);
 
-        unlink($scaffoldInterface->model);
-        unlink($scaffoldInterface->controller);
-        unlink($scaffoldInterface->views . '/index.blade.php');
-        unlink($scaffoldInterface->views . '/create.blade.php');
-        unlink($scaffoldInterface->views . '/show.blade.php');
-        unlink($scaffoldInterface->views . '/edit.blade.php');
-        unlink($scaffoldInterface->migration);
-        rmdir($scaffoldInterface->views);
+        unlink($laraScaffold->model);
+        unlink($laraScaffold->controller);
+        unlink($laraScaffold->views . '/index.blade.php');
+        unlink($laraScaffold->views . '/create.blade.php');
+        unlink($laraScaffold->views . '/show.blade.php');
+        unlink($laraScaffold->views . '/edit.blade.php');
+        unlink($laraScaffold->migration);
+        rmdir($laraScaffold->views);
 
-        $scaffoldInterface->delete();
+        $laraScaffold->delete();
 
         Session::flash('status', 'Successfully deleted');
 
@@ -168,7 +184,7 @@ class GuiController extends AppController
 
         } catch (\Exception $e) {
 
-            return "Scaffold-Interface : " . $e->getMessage();
+            return "Lara-Scaffold : " . $e->getMessage();
         }
 
         Session::flash('status', 'Home Page Successfully deleted');
@@ -203,11 +219,15 @@ class GuiController extends AppController
      * Rollback a table from database
      *
      * @return \Illuminate\Http\Response
+     * @throws Exception
      */
     public function rollback()
     {
         try {
-
+            
+            if(!LaraScaffold::all()->count()){
+                throw new \Exception("Nothing to rollback");
+            }
             $exitCode = Artisan::call('migrate:rollback');
 
         } catch (Exception $e) {
@@ -216,6 +236,69 @@ class GuiController extends AppController
         }
 
         Session::flash('status', Artisan::output());
+
+        return redirect('scaffold');
+    }
+
+
+    public function layout()
+    {
+         try {
+            
+            if(!LaraScaffold::all()->count()){
+                throw new \Exception("Nothing to rollback");
+            }
+           
+            $scaffoldList = LaraScaffold::all();
+        
+        $layout = new LayoutGenerator($scaffoldList);
+
+        $layout->Burn();
+        
+
+        Session::flash('status', 'Layout Generated Successfully');
+
+        return redirect('scaffold');
+
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
+       
+        
+    }
+
+    public function freshsite()
+    {
+
+        $exitCode = $this->migrate();
+        //  try {
+            
+        //     if(!LaraScaffold::all()->count()){
+        //         throw new \Exception("Nothing to rollback");
+        //     }
+        //     $scaffoldList = LaraScaffold::all();
+        //     foreach ($scaffoldList as $key => $scaffold) {
+           
+        //     File::delete($scaffold->migration);
+        //     File::delete($scaffold->model);
+        //     File::delete($scaffold->controller);
+        //     File::deleteDirectory($scaffold->views);
+        //     // Schema::drop($scaffold->tablename);
+        //     }
+
+        //     // Schema::drop('lara_scaffolds');
+        //     DB::table('migrations')->truncate();
+            
+
+             
+
+        // } catch (Exception $e) {
+
+        //     return $e->getMessage();
+        // }
+
+        // Session::flash('status', Artisan::output());
 
         return redirect('scaffold');
     }

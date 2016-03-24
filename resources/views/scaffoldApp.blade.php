@@ -89,11 +89,13 @@
             <i class="large mdi-navigation-menu"></i>
         </a>
         <ul>
-            <li><a href = "{{URL::to('/')}}/scaffold/scaffoldHomePage"class="btn-floating blue"><i class="material-icons">view_list</i></a></li>
-            <li><a href = "{{URL::to('/')}}/scaffold/scaffoldHomePageDelete"class="btn-floating red darken-1"><i class="material-icons">delete</i></a></li>
-            <li><a href = "{{URL::to('/')}}/scaffold/scaffoldHomePageIndex" class="btn-floating #7cb342 light-green darken-1"><i class="material-icons">send</i></a></li>
-            <li><a href = "{{URL::to('/')}}/scaffold/rollback" class="btn-floating pink"><i class="material-icons">repeat</i></a></li>
-            <li><a href = "{{URL::to('/')}}/scaffold/migrate" class="btn-floating orange"><i class="material-icons">input</i></a></li>
+            <li><a href = "{{URL::to('/')}}/scaffold/fresh-site" data-position="left" data-delay="10" data-tooltip="Remove All And Make A Fresh Site" class="btn-floating yellow tooltipped"><i class="material-icons">delete</i></a></li>
+            <li><a href = "{{URL::to('/')}}/scaffold/layout" data-position="left" data-delay="10" data-tooltip="Publish Common Layouts" class="btn-floating green-darken-5 tooltipped"><i class="material-icons">web</i></a></li>
+            <li><a href = "{{URL::to('/')}}/scaffold/scaffoldHomePage" data-position="left" data-delay="10" data-tooltip="Create Admin" class="btn-floating blue tooltipped"><i class="material-icons">view_list</i></a></li>
+            <li><a href = "{{URL::to('/')}}/scaffold/scaffoldHomePageDelete" data-position="left" data-delay="10" data-tooltip="Delete Home Page" class="btn-floating red darken-1 tooltipped"><i class="material-icons">delete</i></a></li>
+            <li><a href = "{{URL::to('/')}}/scaffold/scaffoldHomePageIndex" data-position="left" data-delay="10" data-tooltip="View Front DashBoard" class="btn-floating #7cb342 light-green darken-1 tooltipped"><i class="material-icons">send</i></a></li>
+            <li><a href = "{{URL::to('/')}}/scaffold/rollback" data-position="left" data-delay="10" data-tooltip="RollBack" class="btn-floating pink tooltipped"><i class="material-icons">repeat</i></a></li>
+            <li><a href = "{{URL::to('/')}}/scaffold/migrate" data-position="left" data-delay="10" data-tooltip="Migrate All" class="btn-floating orange tooltipped"><i class="material-icons">input</i></a></li>
         </ul>
     </div>
 </body>
